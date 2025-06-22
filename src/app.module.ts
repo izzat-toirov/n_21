@@ -8,7 +8,11 @@ import { Category } from './categories/entities/category.entity';
 import { KurierModule } from './kurier/kurier.module';
 import { Kurier } from './kurier/entities/kurier.entity';
 import { AdminsModule } from './admins/admins.module';
-
+import { UsersModule } from './users/users.module';
+import { Admin } from './admins/entities/admin.entity';
+import { User } from './users/entities/user.entity';
+import { NotificationsModule } from './notifications/notifications.module';
+import { Notification } from './notifications/entities/notification.entity';
 
 @Module({
   imports: [
@@ -23,7 +27,7 @@ import { AdminsModule } from './admins/admins.module';
       password:process.env.PG_PASS,
       username:process.env.PG_USER,
       database:process.env.PG_DB,
-      models:[Social, Category],
+      models:[Social, Category, Kurier, Admin, User, Notification],
       autoLoadModels: true,
       logging: false,
       sync: { alter: true },
@@ -31,7 +35,9 @@ import { AdminsModule } from './admins/admins.module';
     SocialModule,
     CategoriesModule,
     KurierModule,
-    AdminsModule
+    AdminsModule,
+    UsersModule,
+    NotificationsModule
   ],
   controllers: [],
   providers: [],

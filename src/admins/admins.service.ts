@@ -3,13 +3,17 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Admin } from './entities/admin.entity';
 import { UpdateAdminDto } from './dto/update-admin.dto';
 import { CreateAdminDto } from './dto/create-admin.dto';
+import * as bcrypt from "bcrypt";
 
 
 @Injectable()
 export class AdminsService {
   constructor(@InjectModel(Admin) private adminModel: typeof Admin){}
   async create(createAdminDto: CreateAdminDto) {
-    return await this.adminModel.create(createAdminDto);
+    const hash = await bcrypt.hash(createAdminDto.password_hash, 10);
+    return await this.adminModel.create({
+      ...createAdminDto, password_hash: hash
+    });
   }
 
   async findAll() {
