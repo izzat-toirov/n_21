@@ -1,5 +1,5 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsBoolean, IsEnum } from "class-validator";
+import { ApiProperty } from '@nestjs/swagger';
+import { IsString, IsBoolean, IsEnum } from 'class-validator';
 
 export class CreateKurierDto {
   @ApiProperty()

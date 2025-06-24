@@ -6,13 +6,13 @@ import { Kurier } from './entities/kurier.entity';
 
 @Injectable()
 export class KurierService {
-  constructor(@InjectModel(Kurier) private kurierModel: typeof Kurier){}
+  constructor(@InjectModel(Kurier) private kurierModel: typeof Kurier) {}
   async create(createKurierDto: CreateKurierDto) {
     return await this.kurierModel.create(createKurierDto);
   }
 
   async findAll() {
-    return await this.kurierModel.findAll({include: {all: true}});
+    return await this.kurierModel.findAll({ include: { all: true } });
   }
 
   async findOne(id: number) {
@@ -21,7 +21,8 @@ export class KurierService {
 
   async update(id: number, updateKurierDto: UpdateKurierDto) {
     return await this.kurierModel.update(updateKurierDto, {
-      where: {id}, returning: true
+      where: { id },
+      returning: true,
     });
   }
 

@@ -13,21 +13,24 @@ import { Admin } from './admins/entities/admin.entity';
 import { User } from './users/entities/user.entity';
 import { NotificationsModule } from './notifications/notifications.module';
 import { Notification } from './notifications/entities/notification.entity';
+import { AuthModule } from './auth/auth.module';
+import { PruductImageModule } from './pruduct_image/pruduct_image.module';
+import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath:".env",
-      isGlobal:true
+      envFilePath: '.env',
+      isGlobal: true,
     }),
     SequelizeModule.forRoot({
-      dialect:"postgres",
-      host:process.env.PG_HOST,
-      port:Number(process.env.PG_PORT),
-      password:process.env.PG_PASS,
-      username:process.env.PG_USER,
-      database:process.env.PG_DB,
-      models:[Social, Category, Kurier, Admin, User, Notification],
+      dialect: 'postgres',
+      host: process.env.PG_HOST,
+      port: Number(process.env.PG_PORT),
+      password: process.env.PG_PASS,
+      username: process.env.PG_USER,
+      database: process.env.PG_DB,
+      models: [Social, Category, Kurier, Admin, User, Notification],
       autoLoadModels: true,
       logging: false,
       sync: { alter: true },
@@ -37,7 +40,10 @@ import { Notification } from './notifications/entities/notification.entity';
     KurierModule,
     AdminsModule,
     UsersModule,
-    NotificationsModule
+    NotificationsModule,
+    AuthModule,
+    PruductImageModule,
+    ProductModule,
   ],
   controllers: [],
   providers: [],

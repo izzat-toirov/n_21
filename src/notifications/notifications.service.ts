@@ -6,13 +6,15 @@ import { Notification } from './entities/notification.entity';
 
 @Injectable()
 export class NotificationsService {
-  constructor(@InjectModel(Notification) private notification: typeof Notification){}
+  constructor(
+    @InjectModel(Notification) private notification: typeof Notification,
+  ) {}
   async create(createNotificationDto: CreateNotificationDto) {
     return await this.notification.create(createNotificationDto);
   }
 
   async findAll() {
-    return await this.notification.findAll({include: {all: true}});
+    return await this.notification.findAll({ include: { all: true } });
   }
 
   async findOne(id: number) {
@@ -21,7 +23,8 @@ export class NotificationsService {
 
   async update(id: number, updateNotificationDto: UpdateNotificationDto) {
     return await this.notification.update(updateNotificationDto, {
-      where: {id}, returning: true
+      where: { id },
+      returning: true,
     });
   }
 

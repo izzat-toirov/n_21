@@ -3,17 +3,25 @@ import { CreateSocialDto } from './dto/create-social.dto';
 import { UpdateSocialDto } from './dto/update-social.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Social } from './entities/social.entity';
-import { SocialModule } from './social.module';
+// import { SocialModule } from './social.module';
+import { FilesService } from '../files/files.service';
 
 @Injectable()
 export class SocialService {
-  constructor(@InjectModel(Social) private socialModel: typeof Social){}
-  async create(createSocialDto: CreateSocialDto) {
-    return await this.socialModel.create(createSocialDto);
+  constructor(
+    @InjectModel(Social) private socialModel: typeof Social,
+    private readonly fileService: FilesService,
+  ) {}
+  async create(createSocialDto: CreateSocialDto, image: any) {
+    const fileName = await this.fileService.saveFile(image);
+    return await this.socialModel.create({
+      ...createSocialDto,
+      image: fileName,
+    });
   }
 
   async findAll() {
-    return await this.socialModel.findAll({ include: { all:true } });
+    return await this.socialModel.findAll({ include: { all: true } });
   }
 
   async findOne(id: number) {
@@ -22,7 +30,8 @@ export class SocialService {
 
   async update(id: number, updateSocialDto: UpdateSocialDto) {
     return await this.socialModel.update(updateSocialDto, {
-      where: { id }, returning: true,
+      where: { id },
+      returning: true,
     });
   }
 
@@ -33,5 +42,4 @@ export class SocialService {
     }
     return { message: 'Deleted successfully.' };
   }
-  
 }

@@ -1,4 +1,5 @@
-import { Table, Column, Model, DataType } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, HasMany } from 'sequelize-typescript';
+import { Product } from '../../product/entities/product.entity';
 
 interface IAdmin {
   full_name: string;
@@ -41,4 +42,7 @@ export class Admin extends Model<Admin, IAdmin> {
     defaultValue: true,
   })
   declare is_active: boolean;
+
+  @HasMany(()=> Product)
+  product: Product
 }
