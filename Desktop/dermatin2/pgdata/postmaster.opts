@@ -1,0 +1,1 @@
+/usr/local/bin/postgres "-c" "hba_file=/var/lib/postgresql/data/pg_hba.conf" "-c" "listen_addresses=*"

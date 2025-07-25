@@ -1,0 +1,366 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Admin {
+  email: String!
+  full_name: String!
+  hashed_password: String!
+  id: ID!
+  is_active: Boolean!
+  is_creator: Boolean!
+  phone: String!
+}
+
+type Category {
+  id: ID!
+  logo: String!
+  name: String!
+}
+
+type Chat {
+  id: ID!
+  store_id: Float!
+  user_id: Float!
+}
+
+input CreateAdminInput {
+  email: String!
+  full_name: String!
+  password: String!
+  phone: String!
+}
+
+input CreateCategoryDto {
+  logo: String!
+  name: String!
+}
+
+input CreateChatDto {
+  store_id: Float!
+  user_id: Float!
+}
+
+input CreateDermatinDto {
+  category_id: Float!
+  class: String!
+  name: String!
+  prise: Float!
+  raiting: Float!
+  store_id: Float!
+}
+
+input CreateHistoryDto {
+  dermatin_id: Float!
+  user_id: Float!
+}
+
+input CreateMessageDto {
+  chat_id: Float!
+  is_read: Float!
+  text: String!
+}
+
+input CreateOrderDto {
+  dermatin_id: Float!
+  remaing_prise: Float!
+  store_id: Float!
+  total_prise: Float!
+  user_id: Float!
+}
+
+input CreatePaymentDto {
+  amout: String!
+  method: Float!
+  order_id: Float!
+  status: String!
+  user_id: Float!
+}
+
+input CreateRequestDto {
+  status: String!
+  text: String!
+  user_id: Float!
+}
+
+input CreateReviewDto {
+  dermatin_id: Float!
+  ranking: String!
+  user_id: Float!
+}
+
+input CreateSocialDto {
+  link: String!
+  name: String!
+  store_id: Float!
+  type: String!
+}
+
+input CreateStoreDto {
+  destcription: String!
+  logo_url: String!
+  manager_id: Float!
+  name: String!
+  raiting_id: Float!
+  region: String!
+  status: String!
+}
+
+input CreateUserDto {
+  email: String!
+  full_name: String!
+  is_verifid: String!
+  lang: String!
+  password: String!
+  phone: String!
+  region: String!
+  role: String!
+}
+
+type Dermatin {
+  category_id: Float!
+  class: String!
+  id: ID!
+  name: String!
+  prise: Float!
+  raiting: Float!
+  store_id: Float!
+}
+
+type History {
+  dermatin_id: Float!
+  id: ID!
+  user_id: Float!
+}
+
+input LoginUserInput {
+  email: String!
+  password: String!
+}
+
+type LogoutResponseType {
+  message: String!
+}
+
+type LogoutResponseTypeUser {
+  message: String!
+}
+
+type Message {
+  chat_id: Float!
+  id: ID!
+  is_read: Float!
+  text: String!
+}
+
+type Mutation {
+  createAdmin(createAdminInput: CreateAdminInput!): Admin!
+  createCategory(createCategoryDto: CreateCategoryDto!): Category!
+  createChat(createChatDto: CreateChatDto!): Chat!
+  createDermatin(CreateDermatinDto: CreateDermatinDto!): Dermatin!
+  createHistory(createHistoryDto: CreateHistoryDto!): History!
+  createMessage(createMessageDto: CreateMessageDto!): Message!
+  createOrder(createOrderDto: CreateOrderDto!): Order!
+  createPayment(createPaymentDto: CreatePaymentDto!): Payment!
+  createRequest(createRequestDto: CreateRequestDto!): Request!
+  createReview(createReviewDto: CreateReviewDto!): Review!
+  createSocial(createSocialDto: CreateSocialDto!): Social!
+  createStore(createStoreInput: CreateStoreDto!): Store!
+  createUser(createUserInput: CreateUserDto!): User!
+  login(input: LoginUserInput!): TokensTypeUser!
+  logout(UserId: Int!): LogoutResponseTypeUser!
+  refreshToken(UserId: Int!, refreshToken: String!): TokensTypeUser!
+  register(input: CreateUserDto!): String!
+  removeAdmin(id: Int!): Boolean!
+  removeCategory(id: ID!): Boolean!
+  removeChat(id: Int!): Boolean!
+  removeDermatin(id: Int!): Boolean!
+  removeHistory(id: Int!): Boolean!
+  removeMessage(id: Int!): Boolean!
+  removeOrder(id: Int!): Boolean!
+  removePayment(id: Int!): Boolean!
+  removeRequest(id: Int!): Boolean!
+  removeReview(id: Int!): Boolean!
+  removeSocial(id: Int!): Boolean!
+  removeStore(id: Int!): Boolean!
+  removeUser(id: Int!): Boolean!
+  updateAdmin(id: Int!, updateAdminInput: UpdateAdminDto!): Admin!
+  updateCategory(id: ID!, updateCategoryDto: UpdateCategoryDto!): Category!
+  updateChat(id: Int!, updateChatDto: UpdateChatDto!): Chat!
+  updateDermatin(UpdateDermatinDto: UpdateDermatinDto!): Dermatin!
+  updateHistory(id: Int!, updateHistoryDto: UpdateHistoryDto!): History!
+  updateMessage(id: Int!, updateMessageDto: UpdateMessageDto!): Message!
+  updateOrder(id: Int!, updateOrderDto: UpdateOrderDto!): Order!
+  updatePayment(id: Int!, updatePaymentDto: UpdatePaymentDto!): Payment!
+  updateRequest(updateRequestDto: UpdateRequestDto!): Request!
+  updateReview(id: Int!, updateReviewDto: UpdateReviewDto!): Review!
+  updateSocial(id: Int!, updateSocialDto: UpdateSocialDto!): Social!
+  updateStore(updateStoreInput: UpdateStoreDto!): Store!
+  updateUser(UpdateUserDto: UpdateUserDto!): User!
+}
+
+type Order {
+  dermatin_id: Float!
+  id: ID!
+  remaing_prise: Float!
+  store_id: Float!
+  total_prise: Float!
+  user_id: Float!
+}
+
+type Payment {
+  amout: String!
+  id: ID!
+  method: Float!
+  order_id: Float!
+  status: String!
+  user_id: Float!
+}
+
+type Query {
+  categories: [Category!]!
+  category(id: ID!): Category!
+  dermatin(id: Int!): Dermatin!
+  dermatins: [Dermatin!]!
+  getAdmin(id: Int!): Admin!
+  getAllAdmins: [Admin!]!
+  getAllChats: [Chat!]!
+  getAllHistory: [History!]!
+  getAllMessages: [Message!]!
+  getAllOrders: [Order!]!
+  getAllPayments: [Payment!]!
+  getAllReviews: [Review!]!
+  getAllSocials: [Social!]!
+  getChat(id: Int!): Chat!
+  getHistory(id: Int!): History!
+  getMessage(id: Int!): Message!
+  getOrder(id: Int!): Order!
+  getPayment(id: Int!): Payment!
+  getReview(id: Int!): Review!
+  getSocial(id: Int!): Social!
+  request(id: Int!): Request!
+  requests: [Request!]!
+  sayHello: String!
+  store(id: Int!): Store!
+  stores: [Store!]!
+  user(id: Int!): User!
+  users: [User!]!
+}
+
+type Request {
+  id: ID!
+  status: String!
+  text: String!
+  user_id: Float!
+}
+
+type Review {
+  dermatin_id: Float!
+  id: ID!
+  ranking: String!
+  user_id: Float!
+}
+
+type Social {
+  id: ID!
+  link: String!
+  name: String!
+  store_id: Float!
+  type: String!
+}
+
+type Store {
+  destcription: String!
+  id: ID!
+  logo_url: String!
+  manager_id: Float!
+  name: String!
+  raiting_id: Float!
+  region: String!
+  status: String!
+}
+
+type TokensType {
+  accessToken: String!
+  refreshToken: String!
+}
+
+type TokensTypeUser {
+  accessToken: String!
+  refreshToken: String!
+}
+
+input UpdateAdminDto {
+  email: String
+  full_name: String
+  id: Int!
+}
+
+input UpdateCategoryDto {
+  id: Int!
+}
+
+input UpdateChatDto {
+  id: Int!
+}
+
+input UpdateDermatinDto {
+  id: Int!
+}
+
+input UpdateHistoryDto {
+  id: Int!
+}
+
+input UpdateMessageDto {
+  id: Int!
+}
+
+input UpdateOrderDto {
+  id: Int!
+}
+
+input UpdatePaymentDto {
+  id: Int!
+}
+
+input UpdateRequestDto {
+  id: Int!
+}
+
+input UpdateReviewDto {
+  id: Int!
+}
+
+input UpdateSocialDto {
+  id: Int!
+}
+
+input UpdateStoreDto {
+  id: Int!
+}
+
+input UpdateUserDto {
+  email: String
+  full_name: String
+  id: Int!
+  is_verifid: String
+  lang: String
+  password: String
+  phone: String
+  region: String
+  role: String
+}
+
+type User {
+  email: String!
+  full_name: String
+  hashed_password: String!
+  hashed_refresh_token: String
+  id: ID!
+  is_verifid: String!
+  lang: String!
+  phone: String!
+  region: String!
+  role: String!
+}

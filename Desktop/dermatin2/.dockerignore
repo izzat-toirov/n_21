@@ -1,0 +1,5 @@
+node-module
+.env
+Dokerfile
+pgdata
+doker-compose.yml
